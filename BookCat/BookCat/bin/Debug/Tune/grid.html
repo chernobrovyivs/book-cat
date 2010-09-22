@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<title></title>
+	<style type="text/css">
+
+a {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+a:hover {
+	TEXT-DECORATION: none
+}
+    
+.asmall
+{
+font-size: 12px;
+}
+
+		div {
+TEXT-TRANSFORM: none; MIN-HEIGHT: 100%; WIDTH: =
+100%; FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif; =
+LETTER-SPACING: normal; HEIGHT: auto !important; FONT-SIZE: 14px; =
+FONT-WEIGHT: normal; WORD-SPACING: normal
+		}
+		div.header_dark {
+			font-family: "Times New Roman", Times, serif;
+			background-color:darkgray;
+			font-style: normal;
+		}
+		div.mono {
+			font-family: "Courier New", Courier, monospace;
+			font-style: normal;
+		}
+		.header_all  { 
+			cursor:default;
+		}
+		.header_mark  { 
+			cursor:hand;
+		}
+		.cell2_NC_L2  { 
+			cursor:default;
+			background-color:gray;
+		}
+		.cell2_C_L2  { 
+			cursor:default;
+			background-color:gainsboro;
+			color:Gainsboro;
+		}
+		.cell1_CS  { /*выделена, курсор стоит*/
+			cursor:default;//
+			border: black 1px dashed;
+			/*color: window;*/
+			background-color: gainsboro;
+		}
+		.cell1_NCS { /*выделена, курсор не стоит*/
+			border: gainsboro 1px solid;
+			/*color: window;*/
+			cursor:default;
+			background-color: gainsboro;
+		}
+		.cell1_CNS { /*не выделена, курсор стоит*/
+			cursor:default;
+			border: black 1px dashed;
+			background-color: gainsboro;
+		}
+		.cell1_NCNS{ /*не выделена, курсор не стоит*/
+			border: #eef3fa 1px dashed;
+			cursor:default;
+/*			background-color: window;*/
+		}
+		.cell1_NE{ /*not enabled*/
+			border: gray 1px solid;
+			cursor:default;
+			background-color: gray;
+		}
+		/*------------------------------*/
+		.cell2_C  { 
+			cursor:default;
+			background-color:gainsboro;
+		}
+		.cell2_NC  { 
+			cursor:default;
+			background-color: window;
+		}
+		.cell2_S  { 
+			BACKGROUND-IMAGE: url(1.JPG);
+			background-repeat: no-repeat;
+			background-position: center center;
+			width:16px;
+			height:16px;
+			cursor:default;
+		}
+		.cell2_NS  { 
+			BACKGROUND-IMAGE: url(2.JPG);
+			background-repeat: no-repeat;
+			background-position: center center;
+			width:16px;
+			height:16px;
+			cursor:default;
+		}
+		.cell2_NE  { 
+			cursor:default;
+			background-color: gray;
+		}
+		.cell2_OPEN  { 
+			BACKGROUND-IMAGE: url(minus.JPG);
+			background-repeat: no-repeat;
+			background-position: center center;
+			width:16px;
+			height:16px;
+			cursor:default;
+		}
+		.cell2_CLOSE  { 
+			BACKGROUND-IMAGE: url(plus.JPG);
+			background-repeat: no-repeat;
+			background-position: center center;
+			width:16px;
+			height:16px;
+			cursor:default;
+
+		/* не показываем выбранные €чейки*/
+		.cell2_S_hid  { 
+			visibility:hidden;
+			cursor:default;
+		}
+		.cell2_NS_hid { 
+			visibility:hidden;
+			cursor:default;
+		}
+
+	</style>
+	<script type="text/javascript">
+		function KeyDown(event)
+		{
+			if(event.keyCode==16 || event.keyCode==17 || event.keyCode==18)
+			{
+				event.returnValue=false;
+				return false;
+			}
+			window.external.webBrouser_KeyDown(event.keyCode, event.ctrlKey, event.altKey, event.shiftKey);
+			event.returnValue=false;
+			return false;
+		}
+		
+		function row_Clicked(_idRow, event)
+		{
+			window.external.webBrouser_Response_Row(_idRow, 1, event.ctrlKey, event.altKey, event.shiftKey, event.screenX, event.screenY);
+		}
+		
+		function row_DblClicked(_idRow, event)
+		{
+			window.external.webBrouser_Response_Row(_idRow, 3, event.ctrlKey, event.altKey, event.shiftKey, event.screenX, event.screenY);
+		}
+		
+		function row_MouseDown(_idRow, event)
+		{
+			if(event.button==2) window.external.webBrouser_Response_Row(_idRow, 2, event.ctrlKey, event.altKey, event.shiftKey, event.screenX, event.screenY);
+		}
+		
+		function MenuShow(_idRow, event)
+		{
+			if(event.button==2) 
+			{
+				window.external.webBrouser_MenuShow(_idRow, event.screenX, event.screenY);
+			}
+			if(event.button==1) 
+			{
+				window.external.webBrouser_CheckForDoubleClick(_idRow, 1, event.ctrlKey, event.altKey, event.shiftKey, event.screenX, event.screenY);
+			}
+		}
+		
+		function element_clicked(_elementName, _idRow, _eventType, event)
+		{
+			window.external.webBrouser_Response_Element(_elementName, _idRow, _eventType, event.ctrlKey, event.altKey, event.shiftKey, event.screenX, event.screenY);
+		}
+		
+		function body_load(_firstElement)
+		{
+			window.external.webBrouser_LoadDataGrid(_firstElement);
+		}
+		
+		function SelectionClear()
+		{
+			document.selection.empty();
+		}
+		
+		function mouse_wheel(event)
+		{
+			 window.external.webBrouser_MouseWheel(event.wheelDelta, event.ctrlKey, event.altKey, event.shiftKey);
+		}
+		
+		function GetSelection()
+		{
+			return parent.document.selection.createRange().text;
+		}
+		
+	</script>
+</head>
+<body id="__body__" style="background-color: #eef3fa; margin-bottom:0px; margin-top:0px; margin-left:0px; margin-right:2px;padding:0px;" onLoad="body_load(0);" onselect="event.returnValue=false;return false;" onselectstart="event.returnValue=false;return false;" onkeydown="event.returnValue=false;KeyDown(event);return false;" onmousewheel="event.returnValue=false;mouse_wheel(event);return false;"  >
+	<div id="main_div" style="width:100%;"></div>
+</body>
+</html>
