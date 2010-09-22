@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="BookCat.PageCover"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	xmlns:fluid="clr-namespace:FluidKit.Controls;assembly=FluidKit"
+	xmlns:cat="clr-namespace:BookCat"
+	Loaded="Page_Loaded" MinWidth="100" MinHeight="100">
+	<UserControl.Resources>
+		<cat:StringCollection x:Key="TestDataSource" />
+
+		<DataTemplate x:Key="TestDataTemplate"
+					  DataType="{x:Type sys:String}">
+			<Border x:Name="ElementVisual"
+					Background="White"
+					Padding="5"
+					BorderThickness="5"
+					BorderBrush="LightGray"
+					Grid.Row="0">
+				<StackPanel>
+					<Image Source="{Binding}" Stretch="Fill" />
+					<Label Content="omfg"/>
+				</StackPanel>
+			</Border>
+		</DataTemplate>
+
+	</UserControl.Resources>
+	<Grid>
+
+
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" HorizontalAlignment="Left" Name="grid1" />
+			<GridSplitter Grid.Row="1" Name="gridSplitter1" Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+			<Grid Grid.Row="2" Name="grid2">
+				<ListView HorizontalAlignment="Stretch" Name="listView1">
+					<ListView.View>
+						<GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+							<GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Header="First Name" Width="100"/>
+							<GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Header="Last Name" Width="100"/>
+							<GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber}" Header="Employee No." Width="100"/>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</Grid>
+			<fluid:ElementFlow Name="_elementFlow" 
+							  ItemsSource="{DynamicResource TestDataSource}"
+							  ItemTemplate="{DynamicResource TestDataTemplate}"
+							  TiltAngle="{Binding Value, ElementName=_tiltAngleSlider}"
+							  ItemGap="{Binding Value, ElementName=_itemGapSlider}"
+							  FrontItemGap="{Binding Value, ElementName=_frontItemGapSlider}"
+							  PopoutDistance="{Binding Value, ElementName=_popoutDistanceSlider}"
+							  ElementWidth="250"
+							  ElementHeight="350"
+							  SelectedIndex="3">
+				<fluid:ElementFlow.Layout>
+					<fluid:CoverFlow />
+				</fluid:ElementFlow.Layout>
+				<fluid:ElementFlow.Background>
+					<LinearGradientBrush EndPoint="0.5,1"
+									 StartPoint="0.5,0">
+						<GradientStop Color="#FF181818" />
+						<GradientStop Color="#FF7A7A7A"
+								  Offset="0.5" />
+						<GradientStop Color="#FF1A1A1A"
+								  Offset="1" />
+					</LinearGradientBrush>
+				</fluid:ElementFlow.Background>
+				<fluid:ElementFlow.Camera>
+					<PerspectiveCamera FieldOfView="60"
+								   Position="0,3,6"
+								   LookDirection="0,-3,-6" />
+				</fluid:ElementFlow.Camera>
+			</fluid:ElementFlow>
+		</Grid>
+
+
+
+
+
+
+	</Grid>
+</UserControl>

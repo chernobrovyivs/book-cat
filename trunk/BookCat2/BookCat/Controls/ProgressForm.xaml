@@ -1,0 +1,10 @@
+﻿<Window x:Class="BookCat.Controls.ProgressForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="ProgressForm" Height="105" Width="300" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+		<ProgressBar Height="10" Margin="12,0,12,23" Name="progressBar1" VerticalAlignment="Bottom" />
+		<Label Margin="12,8,0,31" Name="baseLabel1" HorizontalAlignment="Left" Width="120">Label</Label>
+		<Button Height="23" Margin="0,5,12,0" Name="lnkCancel" VerticalAlignment="Top" Click="lnkCancel_Click" HorizontalAlignment="Right" Width="74">Отмена</Button>
+	</Grid>
+</Window>

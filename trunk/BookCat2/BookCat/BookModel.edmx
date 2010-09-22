@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CatDbModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="CatDbModelStoreContainer">
+          <EntitySet Name="Book" EntityType="CatDbModel.Store.Book" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="CatDbModel.Store.Genre" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Book_guid" />
+          </Key>
+          <Property Name="Book_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Year" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Author_id" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CoAuthor" Type="nvarchar" MaxLength="1000" />
+          <Property Name="File_path" Type="nvarchar" MaxLength="1000" />
+          <Property Name="File_name" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Dt_added" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Announce" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Cover_path" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Publisher" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PageCount" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Tiraj" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Crc" Type="real" Nullable="false" />
+          <Property Name="Subtitle" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Genre_Guid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Genre_guid" />
+          </Key>
+          <Property Name="Genre_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="About" Type="nvarchar" Nullable="false" />
+          <Property Name="Top_guid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CatDbModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="CatDbEntities">
+          <EntitySet Name="Book" EntityType="CatDbModel.Book" />
+          <EntitySet Name="Genre" EntityType="CatDbModel.Genre" /></EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Book_guid" />
+          </Key>
+          <Property Name="Book_guid" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Year" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Author_id" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="CoAuthor" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="File_path" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="File_name" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Dt_added" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ISBN" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Announce" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Cover_path" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Publisher" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="PageCount" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Tiraj" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Crc" Type="Single" Nullable="false" />
+          <Property Name="Subtitle" Type="String" Nullable="true" />
+          <Property Name="Title" Type="String" Nullable="true" />
+          <Property Name="Genre_Guid" Type="Guid" Nullable="true" /></EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Genre_guid" /></Key>
+          <Property Name="Genre_guid" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="About" Type="String" Nullable="false" />
+          <Property Name="Top_guid" Type="Guid" Nullable="false" /></EntityType></Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="CatDbModelStoreContainer" CdmEntityContainer="CatDbEntities">
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="IsTypeOf(CatDbModel.Book)">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Genre_Guid" ColumnName="Genre_Guid" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+                <ScalarProperty Name="Book_guid" ColumnName="Book_guid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Author_id" ColumnName="Author_id" />
+                <ScalarProperty Name="CoAuthor" ColumnName="CoAuthor" />
+                <ScalarProperty Name="File_path" ColumnName="File_path" />
+                <ScalarProperty Name="File_name" ColumnName="File_name" />
+                <ScalarProperty Name="Dt_added" ColumnName="Dt_added" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Announce" ColumnName="Announce" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Cover_path" ColumnName="Cover_path" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="PageCount" ColumnName="PageCount" />
+                <ScalarProperty Name="Tiraj" ColumnName="Tiraj" />
+                <ScalarProperty Name="Crc" ColumnName="Crc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genre">
+            <EntityTypeMapping TypeName="IsTypeOf(CatDbModel.Genre)">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="Top_guid" ColumnName="Top_guid" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre_guid" ColumnName="Genre_guid" />
+                </MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="BookModel">
+        <EntityTypeShape EntityType="CatDbModel.Book" Width="1.5" PointX="0.75" PointY="0.75" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="CatDbModel.Genre" Width="1.5" PointX="3.375" PointY="0.75" Height="1.788331705729167" /></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
